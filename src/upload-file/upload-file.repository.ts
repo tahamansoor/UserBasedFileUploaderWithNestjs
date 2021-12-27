@@ -1,3 +1,4 @@
+require('dotenv').config()
 import { EntityRepository, Repository } from "typeorm";
 import { file } from "./upload-file.entity";
 import {uploadfiledto} from 'src/upload-file/upload-file.dto'
@@ -20,7 +21,8 @@ export class FileRepository extends Repository<file>{
         console.log(File)
         ile.filename = File.originalname
         ile.user = user
-        
+        ile.link = `${process.env.BASE_URL}"/"${File.originalname}`
+        console.log(ile.link)
 
     //saving changes in enitiy
         await ile.save();

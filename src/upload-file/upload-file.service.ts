@@ -30,24 +30,18 @@ async getfilebyid(
     user:User
 ){
     const found = await this.filerepositry.findOne(id);
-    console.log(found)
+    // console.log(found)
     if(found.id === user.files.find(x => found.id === id).id){
         try{
-            console.log(process.env.BASE_URL)
-            return `${process.env.BASE_URL}${found.filename}`;
+            return found;
             
         }
         catch(error){
-            throw new error; 
+            return  error; 
 
         }
 
         }
-    // if(found.id !== user.files.find(x =>found.id === id).id){
-    //     throw new NotFoundException(`file with id: "${id}" not found`);
-
-    // }
-        
 
     
 }

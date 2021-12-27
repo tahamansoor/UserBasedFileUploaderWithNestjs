@@ -10,5 +10,8 @@ export class file extends BaseEntity{
     @ManyToOne(type => User, user => user.files, {eager:false})
     user:User
 
+    @Column()
+    link:string;
+
 
 }
