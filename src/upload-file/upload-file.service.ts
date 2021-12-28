@@ -30,23 +30,28 @@ async getfilebyid(
     user:User
 ){
     const found = await this.filerepositry.findOne(id);
-    // console.log(found)
-    if(found.id === user.files.find(x => found.id === id).id){
-       
+    console.log(user)
+    const file = user.files
+    let checkpoint = 0;
+    file.forEach(element =>{
+        if(element.id == id){
+            checkpoint = 1
+        }
+    })
+    console.log(id)
+    console.log(file)
+    if(found && checkpoint>0){
+        try{
             return found;
+            
+        }
+        catch(error){
+              error; 
 
-        
+        }
+
+        }
 
     
-}else{
-    try{
-        return found;
-    }
-    catch(error){
-        throw error;
-        
-
-    }
-}
 }
 }
