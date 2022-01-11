@@ -2,6 +2,8 @@ require('dotenv').config()
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from 'src/auth/user.entity';
 import { FileRepository } from './upload-file.repository';
+import {uploadfiledto} from 'src/upload-file/upload-file.dto'
+
 
 
 
@@ -28,7 +30,7 @@ async GetallFiles(
 async getfilebyid(
     id:number,
     user:User
-){
+):Promise<uploadfiledto>{
     const found = await this.filerepositry.findOne(id);
     console.log(user)
     const file = user.files

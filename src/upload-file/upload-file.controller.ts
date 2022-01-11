@@ -6,16 +6,18 @@ import { UploadFileService } from './upload-file.service';
 import { User } from 'src/auth/user.entity';
 import { GetUser } from 'src/auth/get-user.decorator';
 import { diskStorage } from 'multer';
-import { extname } from 'path';
+import { ApiBearerAuth } from '@nestjs/swagger';
 
 
 
 @UseGuards(AuthGuard('jwt'))
 @Controller('file')
+@ApiBearerAuth()
 export class UploadFileController {
     constructor(private uploadfilesevices:UploadFileService){}
 
     @Post('upload')
+    
     @UseInterceptors(FileInterceptor('file',
       {
         storage: diskStorage({
